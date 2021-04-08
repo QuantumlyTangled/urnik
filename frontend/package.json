@@ -10,7 +10,9 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.5",
     "next": "10.0.9",
+    "node-fetch": "^2.6.1",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   },
@@ -23,7 +25,9 @@
     "@storybook/addon-docs": "^6.1.21",
     "@storybook/addon-viewport": "^6.1.21",
     "@storybook/react": "^6.1.21",
+    "@types/cheerio": "^0.22.28",
     "@types/node": "^14.14.35",
+    "@types/node-fetch": "^2.5.10",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.2",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
