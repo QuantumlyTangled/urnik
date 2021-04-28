@@ -5,9 +5,11 @@ export const UrnikURLBase = 'https://www.easistent.com/urniki/';
 export const UrnikRegex = /((http(s|):\/\/)?(www.)?easistent.com\/urniki\/)?(?<code>[0-9a-f]{40,40})/gi;
 export const SchoolIDRegex = /.+?var id_sola = '(\d+)';/gm;
 
-export async function getSchoolInfo(url: string): Promise<SchoolInfo | undefined> {
+export const DEFAULT_SCHOOL: SchoolInfo = { ime: '', id: 0, razredi: new Map() };
+
+export async function getSchoolInfo(url: string): Promise<SchoolInfo> {
 	const urnikID = UrnikRegex.exec(url);
-	if (!urnikID?.groups?.code) return;
+	if (!urnikID?.groups?.code) return DEFAULT_SCHOOL;
 
 	const html = await (await fetch(`${CORSProxyBase}${UrnikURLBase}${urnikID.groups.code}`)).text();
 	const $ = cheerio.load(html);
@@ -26,13 +28,13 @@ export async function getSchoolInfo(url: string): Promise<SchoolInfo | undefined
 
 	return {
 		ime: solaIme,
-		id: solaID,
+		id: Number(solaID),
 		razredi
 	};
 }
 
 export interface SchoolInfo {
 	ime: string;
-	id: string | null;
+	id: number | null;
 	razredi: Map<string, number>;
 }
