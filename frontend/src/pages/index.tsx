@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import React, { useEffect, useState } from 'react';
 import { Else, If, Then } from 'react-if';
+import { week } from 'utils/eAsistent/time';
 import { getSchoolInfo, SchoolInfo } from 'utils/SchoolID';
 
 const Index: NextPage = () => {
@@ -20,6 +21,7 @@ const Index: NextPage = () => {
 					<p>Nothin</p>
 				</Else>
 			</If>
+			<p>{week()}</p>
 		</>
 	);
 };
